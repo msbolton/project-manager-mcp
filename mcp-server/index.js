@@ -1,12 +1,13 @@
 /**
  * MCP Server for Project Manager
  * 
- * Implements the MCP protocol for task management with JIRA
+ * Implements the MCP protocol for task management with JIRA and GitLab
  */
 
 require('dotenv').config();
 const readline = require('readline');
 const jiraClient = require('../lib/jira-client');
+const gitlabClient = require('../lib/gitlab-client');
 
 // Configure logging based on environment
 const logLevel = process.env.LOG_LEVEL || 'info';
@@ -18,6 +19,20 @@ const rl = readline.createInterface({
   output: process.stdout,
   terminal: false
 });
+
+// Client selection helper
+function getClient(platform = 'jira') {
+  platform = platform.toLowerCase();
+  
+  switch (platform) {
+    case 'jira':
+      return jiraClient;
+    case 'gitlab':
+      return gitlabClient;
+    default:
+      throw new Error(`Unsupported platform: ${platform}`);
+  }
+}
 
 // MCP protocol implementation
 const mcp = {
@@ -42,22 +57,52 @@ const mcp = {
         console.error(`[DEBUG] Received request: ${JSON.stringify(request)}`);
       }
       
+      // Extract platform from params or use default
+      const platform = (params && params.platform) || 'jira';
+      const client = getClient(platform);
+      
       switch (method) {
         case 'create_issue':
-          const issue = await jiraClient.createIssue(params);
+          const issue = await client.createIssue(params);
           mcp.sendResponse(id, issue);
           break;
           
         case 'update_issue':
-          const { issueKey, updateData } = params;
-          const updatedIssue = await jiraClient.updateIssue(issueKey, updateData);
+          let issueKey, updateData;
+          
+          if (platform === 'jira') {
+            // JIRA uses issueKey
+            issueKey = params.issueKey;
+            updateData = params.updateData;
+          } else if (platform === 'gitlab') {
+            // GitLab uses issueId
+            issueKey = params.issueId;
+            updateData = params.updateData;
+          }
+          
+          const updatedIssue = await client.updateIssue(issueKey, updateData);
           mcp.sendResponse(id, updatedIssue);
           break;
           
         case 'search_issues':
-          const { jql, options } = params;
-          const searchResults = await jiraClient.searchIssues(jql, options);
+          let searchResults;
+          
+          if (platform === 'jira') {
+            // JIRA uses JQL for searching
+            const { jql, options } = params;
+            searchResults = await client.searchIssues(jql, options);
+          } else if (platform === 'gitlab') {
+            // GitLab uses different search parameters
+            searchResults = await client.searchIssues(params);
+          }
+          
           mcp.sendResponse(id, searchResults);
+          break;
+          
+        case 'has_required_config':
+          // Check if the client has required configuration
+          const hasConfig = client.hasRequiredEnv();
+          mcp.sendResponse(id, { hasRequiredConfig: hasConfig });
           break;
           
         default:
@@ -97,3 +142,6 @@ process.on('uncaughtException', (error) => {
   console.error(error.stack);
   process.exit(1);
 });
+
+// Export mcp for testing
+module.exports = mcp;
