@@ -1,0 +1,288 @@
+{
+  "phase1": {
+    "title": "Phase 1: Basic Integration with JIRA",
+    "description": "Establish core functionality with JIRA as the initial task management platform",
+    "tasks": [
+      {
+        "id": "P1-1",
+        "title": "Project Setup",
+        "description": "Initialize project structure and install dependencies",
+        "subtasks": [
+          {
+            "id": "P1-1.1",
+            "title": "Create project directory structure",
+            "description": "Set up the project folders as defined in the PRD: lib/, mcp-server/, cli/",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-1.2",
+            "title": "Initialize package.json",
+            "description": "Set up package.json with required dependencies",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-1.3",
+            "title": "Install dependencies",
+            "description": "Install required packages: jira-client, @anthropic-ai/sdk, commander, dotenv",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-1.4",
+            "title": "Create .env template",
+            "description": "Create template for environment variables (JIRA_URL, JIRA_TOKEN, ANTHROPIC_API_KEY)",
+            "status": "todo",
+            "priority": "medium"
+          }
+        ]
+      },
+      {
+        "id": "P1-2",
+        "title": "JIRA Client Implementation",
+        "description": "Develop shared JIRA client module for issue management",
+        "subtasks": [
+          {
+            "id": "P1-2.1",
+            "title": "Create JIRA client module",
+            "description": "Implement lib/jira-client.js with configuration handling",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-2.2",
+            "title": "Implement issue creation",
+            "description": "Add function to create JIRA issues",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-2.3",
+            "title": "Implement issue update",
+            "description": "Add function to update existing JIRA issues",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-2.4",
+            "title": "Implement issue search",
+            "description": "Add function to search for JIRA issues using JQL",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-2.5",
+            "title": "Add authentication handling",
+            "description": "Implement secure authentication with JIRA API tokens",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-2.6",
+            "title": "Write unit tests for JIRA client",
+            "description": "Create comprehensive tests for all JIRA client functions",
+            "status": "todo",
+            "priority": "medium"
+          }
+        ]
+      },
+      {
+        "id": "P1-3",
+        "title": "MCP Server Implementation",
+        "description": "Develop MCP server for JIRA integration",
+        "subtasks": [
+          {
+            "id": "P1-3.1",
+            "title": "Set up MCP server structure",
+            "description": "Create basic server setup in mcp-server/index.js",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-3.2",
+            "title": "Implement MCP protocol",
+            "description": "Add JSON processing via stdin/stdout following MCP protocol",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-3.3",
+            "title": "Implement create_issue tool",
+            "description": "Create MCP tool for JIRA issue creation",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-3.4",
+            "title": "Implement update_issue tool",
+            "description": "Create MCP tool for JIRA issue updates",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-3.5",
+            "title": "Implement search_issues tool",
+            "description": "Create MCP tool for searching JIRA issues",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-3.6",
+            "title": "Add error handling",
+            "description": "Implement robust error handling for API failures and invalid requests",
+            "status": "todo",
+            "priority": "medium"
+          },
+          {
+            "id": "P1-3.7",
+            "title": "Add background service functionality",
+            "description": "Configure server to run as a background service",
+            "status": "todo",
+            "priority": "medium"
+          },
+          {
+            "id": "P1-3.8",
+            "title": "Write unit tests for MCP server",
+            "description": "Create tests for all MCP server functions and tools",
+            "status": "todo",
+            "priority": "medium"
+          }
+        ]
+      },
+      {
+        "id": "P1-4",
+        "title": "CLI Tool Implementation",
+        "description": "Develop CLI tool for JIRA task management",
+        "subtasks": [
+          {
+            "id": "P1-4.1",
+            "title": "Set up CLI structure",
+            "description": "Create basic CLI setup in cli/index.js using commander",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-4.2",
+            "title": "Implement list command",
+            "description": "Add command to list all issues in a JIRA project",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-4.3",
+            "title": "Implement parse-prd command",
+            "description": "Add command to parse PRD files and create JIRA issues via Claude",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-4.4",
+            "title": "Implement expand command",
+            "description": "Add command to generate JIRA subtasks using Claude",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-4.5",
+            "title": "Add Claude integration",
+            "description": "Implement communication with Claude API for AI-driven commands",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-4.6",
+            "title": "Add command options and flags",
+            "description": "Implement command-line options for various commands",
+            "status": "todo",
+            "priority": "medium"
+          },
+          {
+            "id": "P1-4.7",
+            "title": "Write unit tests for CLI tool",
+            "description": "Create tests for all CLI commands and functions",
+            "status": "todo",
+            "priority": "medium"
+          }
+        ]
+      },
+      {
+        "id": "P1-5",
+        "title": "Documentation",
+        "description": "Create setup and usage documentation",
+        "subtasks": [
+          {
+            "id": "P1-5.1",
+            "title": "Create README.md",
+            "description": "Write main README with project overview and setup instructions",
+            "status": "todo",
+            "priority": "medium"
+          },
+          {
+            "id": "P1-5.2",
+            "title": "Document JIRA client usage",
+            "description": "Create documentation for JIRA client module",
+            "status": "todo",
+            "priority": "medium"
+          },
+          {
+            "id": "P1-5.3",
+            "title": "Document MCP server setup and usage",
+            "description": "Create documentation for setting up and using the MCP server",
+            "status": "todo",
+            "priority": "medium"
+          },
+          {
+            "id": "P1-5.4",
+            "title": "Document CLI commands",
+            "description": "Create comprehensive documentation for all CLI commands",
+            "status": "todo",
+            "priority": "medium"
+          },
+          {
+            "id": "P1-5.5",
+            "title": "Add example workflows",
+            "description": "Document example workflows for common scenarios",
+            "status": "todo",
+            "priority": "low"
+          }
+        ]
+      },
+      {
+        "id": "P1-6",
+        "title": "Testing and Quality Assurance",
+        "description": "Comprehensive testing of Phase 1 features",
+        "subtasks": [
+          {
+            "id": "P1-6.1",
+            "title": "Integration testing",
+            "description": "Test integration between JIRA client, MCP server, and CLI tool",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-6.2",
+            "title": "End-to-end testing",
+            "description": "Test complete workflows from CLI commands to JIRA issue creation",
+            "status": "todo",
+            "priority": "high"
+          },
+          {
+            "id": "P1-6.3",
+            "title": "Error handling testing",
+            "description": "Test various error scenarios and validate appropriate handling",
+            "status": "todo",
+            "priority": "medium"
+          },
+          {
+            "id": "P1-6.4",
+            "title": "Performance testing",
+            "description": "Test performance with large PRDs and multiple issues",
+            "status": "todo",
+            "priority": "low"
+          }
+        ]
+      }
+    ]
+  }
+}
