@@ -1,0 +1,28 @@
+{
+  "name": "project-manager-mcp",
+  "version": "1.0.0",
+  "description": "An MCP server to integrate with JIRA, GitLab, and GitHub for task management",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "start": "node mcp-server/index.js",
+    "cli": "node cli/index.js"
+  },
+  "keywords": ["mcp", "jira", "gitlab", "github", "task-management", "claude"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jira-client": "^7.1.0",
+    "@anthropic-ai/sdk": "^0.6.0",
+    "commander": "^11.0.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "jest": "^29.6.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
